@@ -1,0 +1,72 @@
+<div class="flex flex-row items-center pr-2 ">
+  <tui-svg (click)="sideNavToggle.emit(!sideNavToggle)" [src]="tuiIconMenu "
+           class="text-stone-800 cursor-pointer hover:text-emerald-50 select-none {{ sideNavCollapsed ? 'Collapsed' : 'Not Collapsed' }}"
+           role="button"/>
+<!--  <div class="text-stone-800 font-semibold mx-3 text-xl">Dashboard</div>-->
+
+  <div class="flex flex-row items-center pr-20">
+<!--    <tui-svg (click)="searchBar.emit()" [src]="tuiIconSearch" class="flex items-center mr-10 pl-8 pr-80 py-2 rounded-lg focus:outline-none-->
+<!--             placeholder-gray-800 border text-stone-800"-->
+<!--             placeholder="Search..." role="button"/>-->
+  </div>
+
+  <div class="flex-1"></div>
+
+
+  <div class="flex-1"></div>
+
+
+  <div class="flex flex-row m-2">
+<!--    <tui-svg (click)="notifications.emit()" [src]="tuiIconBellLarge"-->
+<!--             class="text-stone-800 cursor-pointer select-none m-2" role="button"/>-->
+    <tui-badged-content
+      colorTop="var(--tui-error-fill)"
+      size="m"
+      class="tui-space_right-2 "
+      [contentTop]="4"
+      style=""
+    >
+      <tui-svg
+        (click)="notifications.emit()"
+        [src]="tuiIconBellLarge"
+        class="text-stone-800 cursor-pointer select-none m-2"
+        role="button"
+      ></tui-svg>
+    </tui-badged-content>
+    <tui-svg (click)="navigateToSettings()" [src]="tuiIconSettingsLarge"
+             class="text-stone-800 cursor-pointer select-none m-2" role="button"/>
+  </div>
+<!--  <div class="flex-1"></div>-->
+
+
+
+<!--  <div class="flex-1"></div>-->
+  <div class="flex flex-row items-center justify-center gap-3 outline outline-1 outline-violet-300 cursor-pointer rounded-lg mx-2 my-1 px-1 " (click)="navigateToProfile()">
+<div class="flex flex-row items-center justify-center py-0.5">
+    <tui-avatar
+      [rounded]="true"
+
+      [avatarUrl]="userImage"
+      class=" cursor-pointer items-center justify-center flex"
+      size="s"
+      [avatarUrl]="userImage"
+      style=""
+      *ngIf="userImage; else noProfilePic"
+    ></tui-avatar>
+    <ng-template #noProfilePic>
+      <tui-avatar
+        [rounded]="true"
+        [text]=loggedUser.name
+        class=" cursor-pointer items-center justify-center flex"
+        size="s"
+        style=""
+      ></tui-avatar>
+    </ng-template></div>
+    <div class="text-stone-800 font-semibold">{{loggedUser?.name}}</div>
+  </div>
+  <div class="flex flex-row mr-4 ">
+    <tui-svg (click)="onLogout()" [src]="tuiIconLogOut"
+             class="text-stone-800 cursor-pointer select-none" role="button"/>
+  </div>
+
+</div>

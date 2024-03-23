@@ -1,0 +1,92 @@
+
+<div class="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900  active " style="background-image: url('assets/v960-ning-30.jpg');">
+  <div class="container mx-auto active " *ngIf="showSignUpForm; else signInForm" >
+    <div class="max-w-md mx-auto my-10 bg-white p-5 rounded-xl shadow-md dark:bg-gray-800 bg-opacity-50 focus:border-blue-400 focus:ring-blue-300 ">
+      <div class="text-center active container ">
+        <h1 class="my-3 text-3xl font-medium text-gray-800 dark:text-gray-200">Sign Up</h1>
+      </div>
+      <form  #signUpForm="ngForm"  class="container active" >
+        <div class="mb-6">
+          <h1>sign in</h1>
+          <label for="name" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Name</label>
+
+          <input [tuiTextfieldCleaner]="true"
+                 [(ngModel)]="signUpObj.name" type="text" id="name" name="name" required class="block w-full p-2 mb-2 text-gray-700 bg-gray-200 border border-gray-200 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+        </div>
+        <div class="mb-6">  <div class="mb-6">
+          <label  class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Password</label>
+
+
+
+          <tui-input-password
+
+          [(ngModel)]="signUpObj.password" name="password" tuiTextfieldSize="m" class="rounded-none items-center justify-center"></tui-input-password>
+          <tui-error name="password"
+            [(ngModel)]="signUpObj.password"
+            [error]="[] | tuiFieldError | async"
+          ></tui-error>
+
+        </div>
+          <label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Email</label>
+          <input [(ngModel)]="signUpObj.email"  type="text" id="email"  name="email" required class="block w-full p-2 mb-2 text-gray-700 bg-gray-200 border border-gray-200 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+        </div>
+
+        <div class="mb-6">
+          <label for="date" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Date of Birth</label>
+          <input [(ngModel)]="signUpObj.date" type="date" id="date"  name="dateOfBirth" required class="block w-full p-2 mb-2 text-gray-700 bg-gray-200 border border-gray-200 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+        </div>
+        <div class="mb-6">
+          <button (click)="onRegister()" type="submit"  class="w-full p-2 text-white bg-blue-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue">Sign Up</button>
+        </div>
+        <p class="text-red-50 text-center">Already have an account? <a class="cursor-pointer" (click)="toggleForms()">Sign In</a></p>
+      </form>
+    </div>
+  </div>
+
+
+  <!--sign in-->
+  <ng-template #signInForm class="flex items-center justify-center m-auto align-">
+
+
+      <div class="container active mx-auto flex items-center justify-center">
+        <div class="max-w-md mx-auto my-10 bg-white p-5 rounded-xl shadow-md dark:bg-gray-800 container active">
+          <div class="text-center">
+            <h1 class="my-3 text-3xl font-medium text-gray-800 dark:text-gray-200">Welcome Back</h1>
+          </div>
+          <form  #signInForm="ngForm"  >
+
+              <div class="mb-6">
+                <label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Email</label>
+                <input [(ngModel)]="signInObj.email"  type="text" id="email_s"  name="email" required class="block w-full p-2 mb-2 text-gray-700 bg-gray-200 border border-gray-200 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+              </div>
+
+            <div class="mb-6">
+
+              <label  class="block mb-2 text-sm text-gray-600 dark:text-gray-400">Password</label>
+
+              <tui-input-password
+
+                [(ngModel)]="signInObj.password" name="password" tuiTextfieldSize="m" class="rounded-l items-center justify-center"></tui-input-password>
+              <tui-error name="password"
+                         [(ngModel)]="signInObj.password"
+                         [error]="[] | tuiFieldError | async"
+              ></tui-error>
+
+
+
+            </div>
+
+
+            <div class="mb-6">
+              <button (click)="onSignIn()" type="submit"  class="w-full p-2 text-white bg-blue-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue">Sign In</button>
+            </div>
+            <p class="text-red-50 text-center">Don't have an account? <a class="cursor-pointer" (click)="toggleForms()">Sign Up</a></p>
+          </form>
+        </div>
+      </div>
+  </ng-template>
+
+</div>
+
+
+

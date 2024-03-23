@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {DashboardLayoutComponent} from "../../components/dashboard-layout/dashboard-layout.component";
 import {HeaderComponent} from "../../components/header/header.component";
@@ -11,7 +11,7 @@ import {
   tuiIconGrid,
   tuiIconUser,
   tuiIconFilePlus,
-  tuiIconUsersLarge
+  tuiIconUsersLarge, tuiIconLogOut
 } from "@taiga-ui/icons";
 import {DashboardCardsComponent} from "../../components/dashboard-cards/dashboard-cards.component";
 import {MonthlyBudgetCardComponent} from "../../components/monthly-budget-card/monthly-budget-card.component";
@@ -24,14 +24,17 @@ import {TotalExpensesCardComponent} from "../../components/total-expenses-card/t
   selector: 'app-admin-home',
   standalone: true,
   imports: [CommonModule, DashboardLayoutComponent, HeaderComponent, SideNavComponent, SideNavButtonComponent, DashboardCardsComponent, MonthlyBudgetCardComponent, MonthlyExpensesCardComponent, RouterOutlet, TodayExpensesCardComponent, TotalExpensesCardComponent],
-  templateUrl: './admin-home.component.html'
+  templateUrl: './dashboard-home.html'
 })
-export class AdminHomeComponent {
-  sideNavCollapsed: boolean = true;
+export class DashboardHome {
+  @Input() sideNavCollapsed: boolean = true;
+  @Input() isCollapsed = false;
+
 
   protected readonly tuiIconUsersLarge = tuiIconUsersLarge;
   protected readonly tuiIconBarChart = tuiIconBarChart;
   protected readonly tuiIconCreditCard = tuiIconCreditCard;
   protected readonly tuiIconGrid = tuiIconGrid;
   protected readonly tuiIconFilePlus = tuiIconFilePlus;
+  protected readonly tuiIconLogOut = tuiIconLogOut;
 }

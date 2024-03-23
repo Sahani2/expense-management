@@ -1,0 +1,80 @@
+<div class="w-full  pr-6">
+
+
+
+
+  <div class="  mx-auto justify-items-end ml-auto my-10   w-full container flex flex-row">
+
+    <tui-input-date-range
+      class="w-72 ml-2"
+      formControlName="dateRange"
+
+      tuiTextfieldSize="s"
+    >Choose the date range
+    </tui-input-date-range>
+
+
+    <tui-input
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="updateSearchTerm()"
+      placeholder="Search expenses..."
+      appearance="outline"
+      tuiTextfieldSize="s"
+      tuiTextfieldIconLeft="false"
+      [tuiTextfieldIcon]="tuiIconSearch"
+      class="w-1/2 ml-auto rounded-xl shadow-md self-end"
+      [tuiTextfieldCleaner]="true"
+
+    ><input
+      placeholder="Search"
+      class="text-right "
+      tuiTextfield
+
+    />Search</tui-input>
+  </div>
+  <div  class=" mx-auto my-10 bg-white p-5 rounded-xl shadow-md w-full container ">
+    <table tuiTable class="w-full">
+      <thead>
+      <tr tuiThGroup  >
+        <th tuiTh [resizable]="true">Date</th>
+        <th tuiTh [resizable]="true">Description</th>
+        <th tuiTh [resizable]="true">Category</th>
+        <th tuiTh [resizable]="true">Cost</th>
+
+      </tr>
+      </thead>
+      <tbody tuiTbody>
+
+      <ng-container *ngIf="!searchTerm; else filteredExpensesBlock">
+        <!-- Display all expenses when there is no search term -->
+        <tr *ngFor="let expense of expenses">
+          <td tuiTd>{{ expense.date }}</td>
+          <td tuiTd>{{ expense.description }}</td>
+          <td tuiTd>{{ expense.category }}</td>
+          <td tuiTd>Rs.{{ expense.cost |tuiFormatNumber }}</td>
+
+        </tr>
+      </ng-container>
+
+      <ng-template #filteredExpensesBlock>
+        <!-- Display filtered expenses when there is a search term -->
+        <tr *ngFor="let expense of filteredExpenses">
+          <td tuiTd>{{ expense.date }}</td>
+          <td tuiTd>{{ expense.description }}</td>
+          <td tuiTd>{{ expense.category }}</td>
+          <td tuiTd>Rs.{{ expense.cost |tuiFormatNumber }}</td>
+
+        </tr>
+      </ng-template>
+      </tbody>
+    </table></div>
+
+  <div class="  mx-auto justify-items-end ml-auto my-10 p-6   w-full container flex flex-row">
+  <tui-ring-chart [value]="value" [(activeItemIndex)]="index" class="" size="xl">
+    <div>{{ sum | currency }}</div>
+    <div>{{ label }}</div>
+  </tui-ring-chart>
+
+
+  </div>
+</div>

@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.primary-button {
+  font-size: 0.75rem; /* text-xs in Tailwind translates to 0.75rem */
+  width: 100%;
+  padding: 0.5rem; /* p-2 in Tailwind translates to 0.5rem */
+  color: #008080; /* text-cyan-800 in Tailwind translates to #008080 */
+  background-color: #add8e6; /* bg-blue-200 in Tailwind translates to #add8e6 */
+  border-radius: 0.375rem; /* rounded-lg in Tailwind translates to 0.375rem */
+  outline: none;
+  transition: outline 0.2s ease; /* Transition styles for outline */
+}
+
+.primary-button:hover,
+.primary-button:focus {
+  outline: 1px solid #00bfff; /* hover:outline-cyan-600 in Tailwind translates to #00bfff */
+}
+
+.primary-button:focus {
+  ring: 2px solid #add8e6; /* focus:ring-2 in Tailwind translates to #add8e6 */
+}
+
+/* Media query for md:text-base in Tailwind translates to a min-width of 48em */
+@media (min-width: 48em) {
+  .primary-button {
+    font-size: 1rem; /* md:text-base in Tailwind translates to 1rem */
+  }
+}

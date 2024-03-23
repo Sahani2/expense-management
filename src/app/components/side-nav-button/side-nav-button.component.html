@@ -1,0 +1,12 @@
+<div
+  [routerLink]="link"
+  class="group flex items-center
+{{sideNavCollapsed?'justify-center flex-col gap-1':'pl-4 flex-row gap-3'}}
+hover:bg-gradient-to-r from-violet-100 to-blue-100 py-2 rounded-xl select-none cursor-pointer"
+  role="button">
+  <tui-svg [src]="tuiIcon"
+           class="text-stone-500 cursor-pointer select-none group-hover:text-stone-800" role="button"
+           style="font-size: 20px"/>
+  <div  class="text-stone-500 group-hover:text-stone-800 {{sideNavCollapsed ? 'hidden' : 'text-base'}}" >{{ name }}</div>
+</div>
+

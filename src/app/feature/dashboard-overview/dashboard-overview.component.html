@@ -1,0 +1,27 @@
+<div class=" mt-8 md:mt-20  p-4">
+  <h1 class="text-base md:text-lg text-center md:text-left mb-4 pr-24 pl-8 text-gray-500">Overview</h1>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 content-between mr-8  ">
+
+
+    <app-today-expenses-card class="p-4 content-between basis-1/4  "></app-today-expenses-card>
+    <app-monthly-expenses-card class="p-4 content-between basis-1/4  "></app-monthly-expenses-card>
+    <app-monthly-budget-card class="p-4 content-between basis-1/4 "></app-monthly-budget-card>
+    <app-total-expenses-card class="p-4 content-between basis-1/4 "></app-total-expenses-card>
+
+
+  </div>
+
+  <div class="  mx-auto ml-auto my-10 p-6   w-full container flex flex-row ">
+    <div class="p-6  rounded-xl shadow-md">
+      <h1 class="mb-10 text-lg text-gray-500"> Category Summery</h1>
+
+
+
+      <tui-ring-chart
+        [value]="value"
+        [(activeItemIndex)]="index" size="xl"
+      >
+                <div>{{ sum | currency:'Rs .' }}</div>
+                <div>{{ label }}</div>
+      </tui-ring-chart>
+    </div></div></div>

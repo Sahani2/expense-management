@@ -1,0 +1,29 @@
+<div class="bg-white w-full h-full py-5 relative overflow-hidden rounded-lg bg-cover bg-no-repeat  text-center"
+     style="background-image: url('assets/v960-ning-30.jpg');">
+  <div [style.max-width]="sideNavCollapsed ? '150px' : '210px'"
+       [style.transition]="'max-width 0.3s ease'"
+       class="absolute px-5 flex flex-col py-10 top-0 bottom-0"
+  >
+    <div
+      class="rounded-2xl bg-gradient-to-b from-violet-300 from-10% via-sky-100 via-55% to-blue-200 to-95%  flex-1 py-3 flex flex-col text-white overflow-y-scroll no-scrollbar">
+      <app-side-nav [isCollapsed]="sideNavCollapsed" class="h-full">
+        <ng-content [select]="SideNavButtonComponent"/>
+      </app-side-nav>
+    </div>
+  </div>
+  <div
+    [style.transition]="'all 0.3s ease'"
+    class="bg-slate-100 h-full py-5 pr-1 mr-5 rounded-2xl
+    {{sideNavCollapsed?'pl-20 ml-16':'pl-[125px] ml-32'}}">
+    <div class="h-full">
+      <app-header (sideNavToggle)="whenSideNavToggle()" class="h-[10%]"/>
+      <div class="overflow-y-scroll mini-scrollbar h-[85%] mt-5 ">
+
+
+
+        <router-outlet/>
+  </div>
+
+    </div></div>
+
+</div>

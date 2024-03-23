@@ -1,0 +1,110 @@
+<div  class="max-w-md mx-auto my-10 bg-white p-5 rounded-xl shadow-md  container active">
+  <form [formGroup]="AddExpenses" class="space-y-4 " [tuiTextfieldCleaner]="true" >
+    <h2 class="text-gray-600 text-xl mt-4 mb-8 flex justify-center items-center md:text-2xl" >Add Expenses</h2>
+    <div class="mb-16  flex flex-col space-y-2 justify-center items-center mt-16">
+      <div class="flex flex-col w-full mb-4 bg-slate-100 rounded-xl">
+        <label  class=" text-left block mb-2 ml-3 text-base text-gray-900 dark:text-gray-400 "><span class="tui-required text-red-500 mr-0.5"></span>Date</label>
+        <tui-input-date  formControlName="date"></tui-input-date>
+        <tui-error
+          formControlName="date"
+          [error]="[] | tuiFieldError | async"
+        ></tui-error>
+      </div>
+      <div class=" tui-spacing flex flex-col w-full mb-4 bg-slate-100 rounded-xl">
+        <label  class=" text-left block mb-2 ml-3 text-base text-gray-900 dark:text-gray-400 ">Description</label>
+        <tui-textarea
+          formControlName="description"
+          class="w-full"
+          [expandable]="true"
+          [tuiTextfieldCleaner]="true"
+
+
+        >
+          <input
+            placeholder="Write a few words about yourself"
+
+            tuiTextfield/>
+        </tui-textarea>
+
+      </div>
+      <div class="w-full my-10 bg-slate-100 rounded-xl">
+        <label  class="text-left block mb-2 ml-3 text-base text-gray-900 dark:text-gray-500">
+          <span class="mr-0.5 tui-required text-red-500"></span>Category
+        </label>
+        <tui-combo-box
+          formControlName="category"
+
+          [stringify]="stringify"
+          [tuiTextfieldLabelOutside]="true"
+        >
+          Type of the expense
+          <tui-data-list-wrapper
+            *tuiDataList
+            [itemContent]="stringify | tuiStringifyContent"
+            [items]="items | tuiFilterByInputWith: stringify"
+          ></tui-data-list-wrapper>
+        </tui-combo-box>
+        <tui-error formControlName="category" [error]="[] | tuiFieldError | async"></tui-error>
+      </div>
+      <div class=" tui-spacing flex flex-col w-full my-4  bg-slate-100 rounded-xl">
+        <label  class=" text-left block mb-2 ml-3 text-base text-gray-900 dark:text-gray-500 "><span class="tui-required mr-0.5 text-red-500"></span>Cost </label>
+        <tui-input-number
+          formControlName="cost"
+          tuiTextfieldCurrency
+          [tuiTextfieldCleaner]="true"
+
+
+        > Rs<input
+
+          autocomplete="Offer"
+          placeholder="Rs.00000.00"
+          tuiTextfield
+          type="text"
+        />
+        </tui-input-number>
+        <tui-error
+          formControlName="cost"
+          [error]="[] | tuiFieldError | async"
+        ></tui-error>
+      </div>
+      <div class="flex flex-col w-full mb-4  bg-slate-100 rounded-xl">
+
+        <tui-input-files class="control" formControlName="file" (change)="onFileSelected($event)">
+          <ng-template let-dragged>
+            <div *ngIf="dragged; else base" class="content">
+              <tui-marker-icon mode="link" [src]="tuiIconUploadCloudLarge"></tui-marker-icon>
+              <div>
+                Drag and drop file here or
+                <a tuiLink>click to upload</a>
+              </div>
+            </div>
+            <ng-template #base>
+              <div class="content">
+                <tui-marker-icon mode="link" [src]="tuiIconUploadCloudLarge"></tui-marker-icon>
+                <input
+                  accept="image/*"
+                  capture="user"
+                  title="Choose files (no limits)"
+                  placeholder="Choose a file"
+                  id="file"
+                  tuiInputFiles
+                  (change)="onFileSelected($event)"
+                />
+                <div>Drag and drop file here or
+                  <a tuiLink>click to upload</a></div>
+                <label>{{ selectedFileName }}</label>
+              </div>
+            </ng-template>
+          </ng-template>
+        </tui-input-files>
+
+
+      </div>
+      <button (click)="onSubmit()"
+              class=" text-xs md:text-base w-full p-2 mt-5 text-cyan-800 bg-blue-200 rounded-lg outline-none focus:outline-blue-950 outline hover:outline-cyan-600 focus:ring-2 focus:ring-blue">
+        Add
+      </button>
+    </div>
+  </form>
+
+</div>

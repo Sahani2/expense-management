@@ -1,0 +1,67 @@
+<div  class=" mr-6 w-auto  my-10 bg-white p-5 rounded-xl  container active">
+  <h2 class=" text-left text-gray-600 text-xl mt-4 mb-8 flex  items-center md:text-2xl" >Settings</h2>
+
+  <div  class=" mx-6 w-auto  my-10 bg-white p-5 rounded-xl   container active">
+
+    <div  class=" mx-6 w-auto  my-10 bg-white p-5 rounded-xl shadow-md  container active cursor-pointer">
+      <h2 class=" text-left text-gray-600 text-lg mt-4 mb-3 flex  items-center md:text-xl" >Theme</h2>
+      <p class="text-left text-gray-600 text-sm">Set a color theme</p>
+
+    </div>
+
+    <div  class=" outline-2 outline-gray-300 outline mx-6 w-auto  my-10 bg-white p-5 rounded-xl shadow-md  container active cursor-pointer"  (click)="navigateToProfile()">
+      <h2 class=" text-left text-gray-600 text-lg mt-4 mb-3 flex  items-center md:text-xl" >Account</h2>
+      <p class="text-left text-gray-600 text-sm">View and edit your profile details</p>
+    </div>
+
+    <div (click)="openPasswordForm()" class=" mx-6 w-auto  my-10 bg-white p-5 rounded-xl shadow-md  container active cursor-pointer">
+      <h2 class=" text-left text-gray-600 text-lg mt-4 mb-3 flex  items-center md:text-xl" >Reset Password</h2>
+      <p class="text-left text-gray-600 text-sm">Set a new password , if you want to change your current password</p>
+
+    </div>
+
+    <!--    popup form-->
+    <form *ngIf="isFormVisible">
+<div class="  mx-auto  ml-auto mt-3  mb-3 w-full container flex flex-row">
+    <tui-svg
+            (click)="closePasswordForm()"
+            [src]="tuiIconClose"
+            class=" h-8 ml-1 mr-auto justify-items-end text-gray-500 hover:text-stone-800 cursor-pointer  " role="button"
+    ></tui-svg>
+</div>
+
+
+      <div class="tui-form__row tui-form__row_multi-fields">
+
+        <div class="tui-form__multi-field">
+          <div class="mb-6 flex flex-col space-y-2">
+            <label for="currentPassword"  class="block mb-2 text-lg text-red-50 dark:text-gray-500"> Current Password</label>
+            <input  type="password" id="currentPassword" name="currentPassword" [(ngModel)]="currentPassword" class="border-b border-gray-300 focus:outline-none focus:border-blue-500 text-base">
+
+          </div></div>
+        <div class="tui-form__multi-field">
+          <div class="mb-6 flex flex-col space-y-2">
+            <label for="newPassword" class="block mb-2 text-lg text-red-50 dark:text-gray-500"> new Password</label>
+            <input type="password" id="newPassword" name="newPassword" [(ngModel)]="newPassword" class="border-b border-gray-300 focus:outline-none focus:border-blue-500 text-base">
+          </div>
+        </div>
+
+      </div>
+      <button type="submit" (click)="onSubmit()" class=" text-xs md:text-base w-1/2 p-2 mt-5 text-cyan-800 bg-blue-200 rounded-lg outline-none focus:outline-blue-950 outline hover:outline-cyan-600 focus:ring-2 focus:ring-blue">Save</button>
+    </form>
+    <!--popup form-->
+    <div  class=" mx-6 w-auto  my-10 bg-white p-5 rounded-xl shadow-md  container active cursor-pointer" (click)="deleteAcc()">
+      <h2 class=" text-left text-red-400 text-lg mt-3 mb-3 flex  items-center md:text-xl" >Delete Account</h2>
+      <p class="text-left text-gray-600 text-sm">Delete the account permanantly and delete all data</p>
+
+    </div>
+
+    <div  class=" mx-6 w-auto  my-10 bg-white p-5 rounded-xl shadow-md  container active cursor-pointer" (click)="onLogout()">
+      <h2 class=" text-left text-red-400 text-lg mt-4 mb-3 flex  items-center md:text-xl" >Logout</h2>
+      <p class="text-left text-gray-600 text-sm">just log out and if you want to login again, you should enter the email and password</p>
+
+    </div>
+
+  </div>
+
+</div>

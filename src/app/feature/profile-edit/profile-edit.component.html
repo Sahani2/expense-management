@@ -1,0 +1,235 @@
+<!--<button (click)="getUserProfile()">View Profile</button>-->
+
+<!-- Profile View -->
+<div  class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-6 content-between mr-8 w-full mt-5">
+
+
+  <div  *ngIf="editMode; else readOnlyProfileView " class="container mx-auto active bg-white p-5 rounded-xl shadow-md content-between col-span-2 lg:col-span-2">
+    <div class="items-center justify-center flex">
+      <!-- Avatar component -->
+      <tui-badged-content
+        colorBottom="#526565"
+        contentBottom="tuiIconCamera"
+        (click)="fileInput.click()"
+        size="l"
+        class="tui-space_right-1 cursor-pointer"
+      >
+        <tui-avatar
+          [rounded]="true"
+          class=" items-center justify-center flex md:xl ring-offset-2 ring-4"
+          [avatarUrl]="userImage"
+          size="xl"
+          *ngIf="userImage; else noProfilePic"
+        ></tui-avatar></tui-badged-content>
+
+      <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInput>
+
+      <ng-template #noProfilePic>
+        <tui-badged-content
+          (click)="fileInput.click()"
+          colorBottom="#526565"
+          contentBottom="tuiIconCamera"
+          size="l"
+          class="tui-space_right-1 cursor-pointer"
+        >
+          <tui-avatar
+            [rounded]="true"
+            [text]="userProfile.name"
+            [size]="screenSize === 'small' ? 'm' : (screenSize === 'medium' ? 'l' : 'xl')"
+            class=" items-center justify-center flex ring-offset-2 ring-4"
+          ></tui-avatar></tui-badged-content>
+      </ng-template>
+    </div>
+
+    <div class="mb-6 flex flex-col space-y-2">
+      <input  class="block mb-2 text-xl mt-3 text-stone-900 font-semibold dark:text-gray-500 text-center" [(ngModel)]="userProfile.name">
+      <!--      <label id="name" class="border-b border-gray-300 focus:outline-none focus:border-blue-500 text-base"> {{ userProfile.name }}</label>-->
+    </div>
+    <div class="mb-6 flex flex-col space-y-2">
+      <label for="email" class="block mb-2  text-red-50 text-lg dark:text-gray-500">Email</label>
+      <label id="email1" class="border-b border-gray-300 focus:outline-none focus:border-blue-500 text-base"> {{ userProfile.email }}</label>
+    </div>
+    <div class="mb-6 flex flex-col space-y-2">
+      <label for="date" class="block mb-2 text-lg  text-gray-300 dark:text-gray-500">Date Of Birth</label>
+      <input type="date" id="date" class=" text-center border-b border-red-50 focus:outline-none focus:border-blue-500 text-base" [(ngModel)]="userProfile.date">
+
+    </div>
+    <div class="tui-form__row tui-form__row_multi-fields">
+      <div class="tui-form__multi-field">
+        <div class="mb-6 flex flex-col space-y-2">
+          <label  class="block mb-2 text-lg text-red-50 dark:text-gray-500"> Current Password</label>
+          <input  type="password" class="border-b border-gray-300 focus:outline-none focus:border-blue-500 text-base" [(ngModel)]="currentPassword">
+        </div></div>
+      <div class="tui-form__multi-field">
+        <div class="mb-6 flex flex-col space-y-2">
+          <label for="newPassword" class="block mb-2 text-lg text-red-50 dark:text-gray-500"> new Password</label>
+          <input id="newPassword" type="password" class="border-b border-gray-300 focus:outline-none focus:border-blue-500 text-base" [(ngModel)]="newPassword">
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+  </div>
+
+
+
+  <ng-template #readOnlyProfileView>
+
+    <div class="container mx-auto active bg-white p-5 rounded-xl shadow-md content-between col-span-2 lg:col-span-2" *ngIf="userProfile">
+      <div class="items-center justify-center flex">
+        <!-- Avatar component -->
+
+        <tui-avatar
+          [rounded]="true"
+          class=" items-center justify-center flex md:xl ring-offset-2 ring-4"
+          [avatarUrl]="userImage"
+          size="xl"
+          *ngIf="userImage; else noProfilePic"
+        ></tui-avatar>
+
+        <ng-template #noProfilePic>
+
+          <tui-avatar
+            [rounded]="true"
+            [text]="userProfile.name"
+            [size]="screenSize === 'small' ? 'm' : (screenSize === 'medium' ? 'l' : 'xl')"
+            class=" items-center justify-center flex ring-offset-2 ring-4"
+          ></tui-avatar>
+        </ng-template>
+      </div>
+
+      <div class="mb-6 flex flex-col space-y-2">
+        <label  class="block mb-2 text-xl mt-3 text-stone-900 font-semibold dark:text-gray-500 ">{{ userProfile.name }}</label>
+        <!--      <label id="name" class="border-b border-gray-300 focus:outline-none focus:border-blue-500 text-base"> {{ userProfile.name }}</label>-->
+      </div>
+      <div class="mb-6 flex flex-col space-y-2">
+        <label for="email" class="block mb-2  text-red-50 text-lg dark:text-gray-500">Email</label>
+        <label id="email" class="border-b border-gray-300 focus:outline-none focus:border-blue-500 text-base"> {{ userProfile.email }}</label>
+      </div>
+
+      <div class="mb-6 flex flex-col space-y-2">
+        <label for="date" class="block mb-2 text-lg  text-gray-300 dark:text-gray-500">Date Of Birth</label>
+        <label id="date1" class="border-b border-red-50 focus:outline-none focus:border-blue-500 text-base"> {{ userProfile.date }}</label>
+
+      </div>
+      <div class="mb-6 flex flex-col space-y-2">
+        <label for="password" class="block mb-2 text-lg text-red-50 dark:text-gray-500">Password</label>
+        <label id="password" class="border-b border-gray-300 focus:outline-none focus:border-blue-500 text-base">********</label>
+      </div>
+
+
+
+
+    </div>
+  </ng-template>
+
+  <!--  &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+
+
+  <!--aditional-->
+  <div  class="bg-white p-5 rounded-xl shadow-md content-between col-span-4 lg:col-span-4 lg:ml-1 lg:mr-2" *ngIf="editMode; else readOnlyProfileAdditionalView ">
+    <div class="  mx-auto justify-items-end ml-auto mt-3  mb-3 w-full container flex flex-row">
+      <h3 class="text-gray-500 text-left text-xl items-end self-end">Additional Info</h3>
+
+      <div class="flex flex-1"></div>
+      <tui-svg
+        (click)="saveChanges(); saveAdditionalInfo(); loadAdditionalInfo();"
+        [src]="tuiIconCheck"
+        class=" h-8 ml-1 mr-auto self-start justify-self-end text-gray-500 hover:text-stone-800 cursor-pointer items-start "
+        role="button"
+      ></tui-svg>
+      <tui-svg
+              (click)="toggleEditMode()"
+              [src]="tuiIconClose"
+              class=" h-8 ml-1 mr-auto self-start justify-self-end text-gray-500 hover:text-stone-800 cursor-pointer items-start "
+              role="button"
+      ></tui-svg>
+    </div>
+
+    <div class="mb-6 flex flex-col space-y-2">
+      <label for="address" class=" text-left block mb-2  text-red-50 text-lg dark:text-gray-400">Address</label>
+      <input id="address" type="text"  class="border-b border-gray-300 focus:outline-none focus:border-blue-500 text-base" [(ngModel)]="additionalInfo.address">
+    </div>
+
+
+
+    <div class="tui-form__row tui-form__row_multi-fields">
+      <div class="tui-form__multi-field">
+        <div class="mb-6 flex flex-col space-y-2">
+          <label for="telephone" class=" text-left block mb-2  text-red-50 text-lg dark:text-gray-400">Telephone</label>
+          <input id="telephone" type="number" class="border-b border-gray-300 focus:outline-none focus:border-blue-500 text-base" [(ngModel)]="additionalInfo.telephone">
+        </div>
+      </div>
+      <div class="tui-form__multi-field">  <div class="mb-6 flex flex-col space-y-2">
+        <label for="profession" class=" text-left block mb-2  text-red-50 text-lg dark:text-gray-400">profession</label>
+        <input  id="profession" class="border-b border-gray-300 focus:outline-none focus:border-blue-500 text-base" type="text" [(ngModel)]="additionalInfo.profession">
+      </div>
+      </div>
+    </div>
+    <div class="mb-6 flex flex-col space-y-2">
+      <label for="companyName" class=" text-left block mb-2  text-red-50 text-lg dark:text-gray-400">Company name</label>
+      <input id="companyName"  class="border-b border-gray-300 focus:outline-none focus:border-blue-500 text-base" type="text" [(ngModel)]="additionalInfo.companyName">
+    </div>
+
+    <div class="mb-6 flex flex-col space-y-2">
+      <label for="companyAddress" class=" text-left block mb-2  text-red-50 text-lg dark:text-gray-800">Company address</label>
+      <input id="companyAddress" class="border-b border-gray-300 focus:outline-none focus:border-blue-500 text-base" type="text" [(ngModel)]="additionalInfo.companyAddress">
+    </div>
+  </div>
+
+  <ng-template #readOnlyProfileAdditionalView>
+
+    <div  class="bg-white p-5 rounded-xl shadow-md content-between col-span-4 lg:col-span-4 lg:ml-1 lg:mr-2" >
+      <div class="  mx-auto justify-items-end ml-auto mt-3  mb-3 w-full container flex flex-row">
+        <h3 class="text-gray-500 text-left text-xl items-end self-end">Additional Info</h3>
+
+        <div class="flex flex-1"></div>
+        <tui-svg
+
+          [src]="tuiIconEdit"
+          class=" h-8 ml-1 mr-auto self-start justify-self-end text-gray-500 hover:text-stone-800 cursor-pointer items-start "
+          role="button"
+          (click)="toggleEditMode();"
+        ></tui-svg></div>
+
+      <div class="mb-6 flex flex-col space-y-2">
+        <label  class=" text-left block mb-2  text-red-50 text-lg dark:text-gray-400">Address</label>
+        <label  class="border-b border-gray-300 focus:outline-none focus:border-blue-500 text-base">{{additionalInfo.address}}</label>
+      </div>
+
+
+
+      <div class="tui-form__row tui-form__row_multi-fields">
+        <div class="tui-form__multi-field">
+          <div class="mb-6 flex flex-col space-y-2">
+            <label for="email" class=" text-left block mb-2  text-red-50 text-lg dark:text-gray-400">Telephone</label>
+            <label  class="border-b border-gray-300 focus:outline-none focus:border-blue-500 text-base">{{additionalInfo.telephone}}</label>
+          </div>
+        </div>
+        <div class="tui-form__multi-field">  <div class="mb-6 flex flex-col space-y-2">
+          <label for="email" class=" text-left block mb-2  text-red-50 text-lg dark:text-gray-400">profession</label>
+          <label  class="border-b border-gray-300 focus:outline-none focus:border-blue-500 text-base">{{additionalInfo.profession}}</label>
+        </div>
+        </div>
+      </div>
+      <div class="mb-6 flex flex-col space-y-2">
+        <label for="email" class=" text-left block mb-2  text-red-50 text-lg dark:text-gray-400">Company name</label>
+        <label  class="border-b border-gray-300 focus:outline-none focus:border-blue-500 text-base">{{additionalInfo.companyName}}</label>
+      </div>
+
+      <div class="mb-6 flex flex-col space-y-2">
+        <label for="email" class=" text-left block mb-2  text-red-50 text-lg dark:text-gray-400">Company address</label>
+        <label  class="border-b border-gray-300 focus:outline-none focus:border-blue-500 text-base">{{additionalInfo.companyAddress}}</label>
+      </div>
+    </div>
+
+  </ng-template>
+
+
+
+</div>

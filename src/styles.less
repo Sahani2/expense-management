@@ -1,1 +1,224 @@
 /* You can add global styles to this file, and also import other style files */
+@import "node_modules/@taiga-ui/core/styles/taiga-ui-theme";
+@import "node_modules/@taiga-ui/core/styles/taiga-ui-fonts";
+@import "node_modules/@taiga-ui/styles/taiga-ui-global";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.mini-scrollbar::-webkit-scrollbar {
+  width: 6px; /* width of the entire scrollbar */
+}
+
+.mini-scrollbar::-webkit-scrollbar-track {
+@apply bg-gradient-to-b from-white to-indigo-200;
+}
+
+.mini-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 0 solid rgb(255, 255, 255); /* creates padding around scroll thumb */
+@apply bg-gradient-to-b from-indigo-200 to-white;
+}
+}
+
+.width-transition {
+  transition: max-width 0.3s ease;
+}
+
+.slider {
+  width: 12.5rem;
+  margin-bottom: 1em;
+}
+
+
+[tuiWrapper][data-appearance='edit-save'] {
+  background: #009473;
+  color: #fff;
+
+  .wrapper-hover({
+    background: #01604b;
+  });
+
+  .wrapper-active({
+    background: #01604b;
+  });
+
+  .wrapper-disabled({
+    background: #eaecee;
+  });
+}
+
+[tuiWrapper][data-appearance='edit-cancel'] {
+  background: #a0a4a3;
+  //color: #fff;
+
+  outline-width: thick;
+  outline-color: darkslategray;
+  color: #eaecee;
+
+  .wrapper-hover({
+    background: #526565;
+  });
+
+  .wrapper-active({
+    background: #526565;
+  });
+
+  .wrapper-disabled({
+    background: #eaecee;
+  });
+
+
+}
+
+.scroll-edit {
+  overflow-y: scroll;
+
+  //overflow-y-scroll  flex-1 overflow-x-hidden tuiScrollable
+}
+
+[tuiWrapper][data-appearance='edit-save'] {
+  background: #009473;
+  color: #fff;
+
+  .wrapper-hover({
+    background: #01604b;
+  });
+
+  .wrapper-active({
+    background: #01604b;
+  });
+
+  .wrapper-disabled({
+    background: #eaecee;
+  });
+}
+
+[tuiWrapper][data-appearance='add-new'] {
+  [tuiButton][data-size='m'] {
+    background: #009473;
+    --tui-padding: 1rem;
+  }
+
+  .wrapper-hover({
+    background: #01604b;
+  });
+
+  .wrapper-active({
+    background: #01604b;
+  });
+
+  .wrapper-disabled({
+    background: #eaecee;
+  });
+}
+
+.slider {
+  width: 12.5rem;
+  margin-bottom: 1em;
+}
+
+// This goes into global, non-encapsulated styles
+[tuiWrapper][data-appearance='add-new'] {
+  [tuiButton][data-size='m'] {
+    --tui-padding: 1rem;
+  }
+
+  background: #04ab86;
+  color: #fff;
+
+  .wrapper-hover({
+    background: #01604b;
+  });
+
+  .wrapper-active({
+    background: #01604b;
+  });
+
+  .wrapper-disabled({
+    background: #eaecee;
+  });
+}
+
+[tuiWrapper][data-appearance='service'] {
+  background: #6cb79e;
+  color: #fff;
+
+  .wrapper-hover({
+    background: #01604b;
+  });
+
+  .wrapper-active({
+    background: #01604b;
+  });
+
+  .wrapper-disabled({
+    background: #eaecee;
+  });
+}
+
+[tuiWrapper][data-appearance='cancel'] {
+  background: #a0a4a3;
+  color: #fff;
+
+  outline-width: thick;
+  outline-color: darkslategray;
+  color: #eaecee;
+
+
+  .wrapper-hover({
+    background: #01604b;
+  });
+
+  .wrapper-active({
+    background: #01604b;
+  });
+
+  .wrapper-disabled({
+    background: #eaecee;
+  });
+}
+
+.scroll-edit {
+  overflow-y: scroll;
+
+  //overflow-y-scroll  flex-1 overflow-x-hidden tuiScrollable
+
+  .primary-button {
+    font-size: 0.75rem; /* text-xs in Tailwind translates to 0.75rem */
+    width: 100%;
+    padding: 0.5rem; /* p-2 in Tailwind translates to 0.5rem */
+    color: #008080; /* text-cyan-800 in Tailwind translates to #008080 */
+    background-color: #add8e6; /* bg-blue-200 in Tailwind translates to #add8e6 */
+    border-radius: 0.375rem; /* rounded-lg in Tailwind translates to 0.375rem */
+    outline: none;
+    transition: outline 0.2s ease; /* Transition styles for outline */
+  }
+
+  .primary-button:hover,
+  .primary-button:focus {
+    outline: 1px solid #00bfff; /* hover:outline-cyan-600 in Tailwind translates to #00bfff */
+  }
+
+  .primary-button:focus {
+    ring: 2px solid #add8e6; /* focus:ring-2 in Tailwind translates to #add8e6 */
+  }
+
+  /* Media query for md:text-base in Tailwind translates to a min-width of 48em */
+  @media (min-width: 48em) {
+    .primary-button {
+      font-size: 1rem; /* md:text-base in Tailwind translates to 1rem */
+    }
+  }
+}

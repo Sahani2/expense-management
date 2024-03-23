@@ -1,0 +1,30 @@
+<div class="flex flex-col h-full">
+<!--  {{ sideNavCollapsed ? 'Collapsed' : 'Not Collapsed' }}-->
+  <div class="flex flex-col justify-center items-center mb-5 {{isCollapsed ? 'mt-7' : 'mt-5'}} ">
+    <div>
+      <img class="w-12 h-12 {{isCollapsed ? 'w-8 h-8' : 'w-12 h-12'}} " src="assets/logo1.ico">
+    </div>
+    <div class="font-bold  bg-gradient-to-r from-blue-950 via-violet-500 to-rose-900 inline-block text-transparent bg-clip-text {{isCollapsed ? 'text-xs' : 'text-xl'}}">Budget</div>
+  </div>
+  <div class="overflow-y-scroll flex-1 no-scrollbar overflow-x-hidden py-2 flex justify-center items-center h-screen">
+    <div class="{{isCollapsed ? 'w-[5svw]':'w-[12svw]'}} px-1 flex flex-col gap-3 h-full justify-center"
+         style="min-width: {{isCollapsed?'20px':'170px'}}">
+      <div class="flex-1 py-2 items-center" >
+        <ng-content [select]="SideNavButtonComponent" />
+
+        <app-side-nav-button [sideNavCollapsed]="isCollapsed"  [tuiIcon]="tuiIconGrid"
+                             name="Dashboard" (click)="navigateToOverview()"/>
+        <app-side-nav-button [sideNavCollapsed]="isCollapsed"   [tuiIcon]="tuiIconFilePlus" link="Set-budget" name="Set Budget"/>
+        <app-side-nav-button [sideNavCollapsed]="isCollapsed"  [tuiIcon]="tuiIconCreditCard" link="add-expenses"
+                             name=" Add Expenses"/>
+        <app-side-nav-button [sideNavCollapsed]="isCollapsed"  [tuiIcon]="tuiIconDollarSign" link="manage-expenses" name="Manage" />
+        <app-side-nav-button [sideNavCollapsed]="isCollapsed"  [tuiIcon]="tuiIconBarChart" link="reports"
+                             name="Reports"/>
+      </div>
+    </div>
+  </div>
+  <div class="px-1">
+    <app-side-nav-button
+      (click)="onLogout()" [sideNavCollapsed]="isCollapsed" [tuiIcon]="tuiIconLogOut" name="Logout"/>
+  </div>
+</div>

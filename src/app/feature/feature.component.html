@@ -1,0 +1,7 @@
+
+
+<div class="chart-container">
+  <div *ngFor="let category of chartData" class="chart-slice" [style.background]="category.color" [style.transform]="'rotate(' + category.startAngle + 'deg) skewY(' + category.angle + 'deg)'">
+    <div class="chart-label">{{ category.name }}:{{total}}</div>
+  </div>
+</div>
